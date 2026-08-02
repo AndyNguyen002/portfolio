@@ -88,6 +88,26 @@ body::before {
   padding-bottom: 2rem;
 }
 
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-24px);
+  }
+}
+
+@keyframes floatX {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-16px);
+  }
+}
+
 /* Section padding utility */
 .section-padding {
   padding-top: 6rem;

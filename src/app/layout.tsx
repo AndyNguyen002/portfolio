@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 
 const montserrat = Montserrat({
+  display: "optional",
   variable: "--font-montserrat",
   subsets: ["latin"],
 });
