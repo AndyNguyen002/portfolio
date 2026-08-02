@@ -4,10 +4,10 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 const ROLES = [
+  "Fullstack Developer",
   "Frontend Developer",
-  "UI Engineer",
   "React Specialist",
-  "Motion Designer",
+  "UI Engineer",
 ];
 
 function TypewriterText({ words }: { words: string[] }) {
@@ -134,7 +134,7 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.1 }}
         >
           Hi, I&apos;m{" "}
-          <span className="text-gradient">Your Name</span>
+          <span className="text-gradient">Ngoc Dung</span>
         </motion.h1>
 
         {/* Role typewriter */}
@@ -154,8 +154,9 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          I craft beautiful, performant web experiences with modern technologies.
-          Passionate about clean code, smooth animations, and pixel-perfect UI.
+          Fullstack Developer with 3+ years of experience in React/TypeScript,
+          specializing in real-time systems and complex data visualization —
+          financial dashboards, energy trading platforms.
         </motion.p>
 
         {/* CTAs */}

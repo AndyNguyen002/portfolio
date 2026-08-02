@@ -9,9 +9,42 @@ const fadeUp = {
 
 const stats = [
   { value: "3+", label: "Years Experience" },
-  { value: "20+", label: "Projects Shipped" },
-  { value: "10+", label: "Happy Clients" },
-  { value: "∞", label: "Cups of Coffee" },
+  { value: "5+", label: "Projects Shipped" },
+  { value: "3", label: "Companies" },
+  { value: "300+", label: "Trial Users (ChatX)" },
+];
+
+const experience = [
+  {
+    company: "SETA International",
+    role: "Frontend Developer",
+    period: "Sept 2025 – present",
+    highlights: [
+      "Developed Strategy Compare feature across 12+ synchronized trading charts",
+      "Built React/Python FastAPI full-stack features end-to-end",
+      "Introduced shared API patterns and reusable component libraries",
+    ],
+  },
+  {
+    company: "ACD Tech",
+    role: "Frontend Developer",
+    period: "June 2023 – Sept 2025",
+    highlights: [
+      "Built real-time financial dashboards with live WebSocket & Chart.js",
+      "Implemented Google OAuth and MetaMask authentication",
+      "Refactored legacy React modules to improve maintainability",
+    ],
+  },
+  {
+    company: "ChatX AI Technology",
+    role: "Fullstack Developer (Part-time)",
+    period: "June 2024 – Jan 2025",
+    highlights: [
+      "Launched AI chatbot platform with 300+ trial users in Vietnam & Korea",
+      "Built auth, Stripe payments, CI/CD on VPS + Nginx",
+      "Refactored 6+ core modules of an open-source AI platform",
+    ],
+  },
 ];
 
 export function About() {
@@ -30,7 +63,7 @@ export function About() {
       </motion.p>
 
       <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
-        {/* Text */}
+        {/* Left — bio + stats */}
         <div>
           <motion.h2
             className="text-4xl md:text-5xl font-bold mb-6 leading-tight"
@@ -42,7 +75,7 @@ export function About() {
           >
             Building things
             <br />
-            <span className="text-gradient">people love to use</span>
+            <span className="text-gradient">people rely on</span>
           </motion.h2>
 
           <motion.div
@@ -54,18 +87,18 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p>
-              I&apos;m a frontend developer with a deep passion for creating
-              exceptional digital experiences. I specialize in building fast,
-              accessible, and beautifully animated web applications.
+              I&apos;m <strong className="text-zinc-200">Nguyen Ngoc Dung</strong>, a Fullstack Developer
+              based in Tay Ho, Ha Noi. I specialize in React/TypeScript, real-time systems,
+              and complex data visualization — from energy trading platforms to AI chatbot products.
             </p>
             <p>
-              My approach combines clean architecture with thoughtful design —
-              every interaction is intentional, every animation serves a purpose.
-              I believe great software feels as good as it looks.
+              I&apos;ve worked across the full product lifecycle: architecture decisions,
+              performance optimization, WebSocket integrations, authentication systems,
+              and production incident resolution.
             </p>
             <p>
-              When I&apos;m not coding, you&apos;ll find me exploring design
-              trends, contributing to open source, or leveling up my skills.
+              Graduated with Distinction in Information Technology from Electric Power University (2025),
+              with an Excellence Scholarship.
             </p>
           </motion.div>
 
@@ -87,36 +120,10 @@ export function About() {
             </svg>
             Download Resume
           </motion.a>
-        </div>
-
-        {/* Avatar + stats */}
-        <div className="space-y-8">
-          {/* Avatar placeholder */}
-          <motion.div
-            className="relative w-64 h-64 mx-auto md:mx-0"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-          >
-            {/* Glow border */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-violet-500 to-cyan-500 p-0.5">
-              <div className="w-full h-full rounded-2xl bg-zinc-900 flex items-center justify-center">
-                <span className="text-7xl select-none">🧑‍💻</span>
-              </div>
-            </div>
-            {/* Decorative dots */}
-            <div className="absolute -right-4 -bottom-4 grid grid-cols-3 gap-1.5">
-              {Array.from({ length: 9 }).map((_, i) => (
-                <div key={i} className="w-1.5 h-1.5 rounded-full bg-violet-500/40" />
-              ))}
-            </div>
-          </motion.div>
 
           {/* Stats */}
           <motion.div
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-2 gap-4 mt-8"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -138,6 +145,47 @@ export function About() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+
+        {/* Right — experience timeline */}
+        <div className="space-y-6">
+          <motion.p
+            className="text-xs font-mono text-zinc-500 uppercase tracking-widest"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            Experience
+          </motion.p>
+
+          {experience.map((exp, i) => (
+            <motion.div
+              key={exp.company}
+              className="relative pl-5 border-l border-zinc-800 hover:border-violet-500/40 transition-colors group"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
+              {/* Dot */}
+              <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full border-2 border-zinc-700 bg-zinc-950 group-hover:border-violet-400 transition-colors" />
+
+              <div className="flex flex-wrap items-start justify-between gap-1 mb-1">
+                <h3 className="font-semibold text-zinc-200 text-sm">{exp.company}</h3>
+                <span className="text-xs font-mono text-zinc-600">{exp.period}</span>
+              </div>
+              <p className="text-xs text-violet-400 font-mono mb-2">{exp.role}</p>
+              <ul className="space-y-1">
+                {exp.highlights.map((h) => (
+                  <li key={h} className="text-xs text-zinc-500 flex items-start gap-1.5">
+                    <span className="mt-1.5 w-1 h-1 rounded-full bg-zinc-600 shrink-0" />
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

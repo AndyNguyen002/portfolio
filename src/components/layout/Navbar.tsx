@@ -45,7 +45,7 @@ export function Navbar() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        &lt;YN /&gt;
+        &lt;ND /&gt;
       </motion.a>
 
       {/* Nav links */}

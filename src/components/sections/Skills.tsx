@@ -2,50 +2,71 @@
 
 import { motion } from "motion/react";
 
-const skills = [
-  { name: "React", icon: "⚛️", level: 95 },
-  { name: "Next.js", icon: "▲", level: 90 },
-  { name: "TypeScript", icon: "TS", level: 88 },
-  { name: "Tailwind CSS", icon: "🌊", level: 92 },
-  { name: "Node.js", icon: "🟢", level: 80 },
-  { name: "Motion", icon: "✦", level: 85 },
-  { name: "GraphQL", icon: "◈", level: 75 },
-  { name: "PostgreSQL", icon: "🐘", level: 70 },
-  { name: "Docker", icon: "🐳", level: 65 },
-  { name: "Figma", icon: "🎨", level: 82 },
-  { name: "Git", icon: "⑂", level: 90 },
-  { name: "Three.js", icon: "◉", level: 60 },
+const skillGroups = [
+  {
+    label: "Frontend",
+    skills: [
+      { name: "React.js", level: 95 },
+      { name: "Next.js", level: 90 },
+      { name: "TypeScript", level: 88 },
+      { name: "JavaScript", level: 92 },
+    ],
+  },
+  {
+    label: "Backend",
+    skills: [
+      { name: "Python / FastAPI", level: 78 },
+      { name: "Node.js / NestJS", level: 72 },
+    ],
+  },
+  {
+    label: "Database",
+    skills: [
+      { name: "PostgreSQL", level: 75 },
+      { name: "MySQL / SQL", level: 72 },
+      { name: "Redis", level: 65 },
+    ],
+  },
+  {
+    label: "Libraries & State",
+    skills: [
+      { name: "Redux", level: 85 },
+      { name: "TanStack Query", level: 80 },
+      { name: "Chart.js", level: 85 },
+      { name: "React Router", level: 88 },
+    ],
+  },
 ];
 
-const tools = [
-  "VS Code", "Vercel", "GitHub", "Notion", "Postman", "Linear",
-];
+const tools = ["Git", "Docker", "Azure", "VMware", "Nginx", "Webpack", "Vite"];
 
-function SkillBar({ name, icon, level, delay }: { name: string; icon: string; level: number; delay: number }) {
+function SkillBar({
+  name,
+  level,
+  delay,
+}: {
+  name: string;
+  level: number;
+  delay: number;
+}) {
   return (
     <motion.div
-      className="p-5 rounded-xl border border-zinc-800 bg-zinc-900/50 hover:border-violet-500/40 hover:bg-zinc-900 transition-all group"
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
-      whileHover={{ y: -4 }}
+      transition={{ duration: 0.4, delay }}
     >
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-3">
-          <span className="text-xl w-8 text-center leading-none font-mono">{icon}</span>
-          <span className="font-medium text-sm text-zinc-200">{name}</span>
-        </div>
+      <div className="flex justify-between items-center mb-1.5">
+        <span className="text-sm text-zinc-300">{name}</span>
         <span className="text-xs font-mono text-violet-400">{level}%</span>
       </div>
-      {/* Progress bar */}
       <div className="h-1 rounded-full bg-zinc-800 overflow-hidden">
         <motion.div
           className="h-full rounded-full bg-gradient-to-r from-violet-500 to-cyan-500"
           initial={{ width: 0 }}
           whileInView={{ width: `${level}%` }}
           viewport={{ once: true }}
-          transition={{ duration: 1, delay: delay + 0.2, ease: "easeOut" }}
+          transition={{ duration: 1, delay: delay + 0.15, ease: "easeOut" }}
         />
       </div>
     </motion.div>
@@ -53,9 +74,10 @@ function SkillBar({ name, icon, level, delay }: { name: string; icon: string; le
 }
 
 export function Skills() {
+  let delay = 0;
+
   return (
     <section id="skills" className="section-padding px-6 md:px-12 max-w-6xl mx-auto">
-      {/* Section label */}
       <motion.p
         className="text-xs font-mono text-violet-400 tracking-widest uppercase mb-4"
         initial={{ opacity: 0, y: 20 }}
@@ -83,17 +105,29 @@ export function Skills() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        Technologies I work with daily to build modern web applications.
+        Technologies I use to build real-time systems, data-heavy dashboards, and full-stack products.
       </motion.p>
 
-      {/* Skills grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
-        {skills.map((skill, i) => (
-          <SkillBar
-            key={skill.name}
-            {...skill}
-            delay={i * 0.05}
-          />
+      {/* Skill groups */}
+      <div className="grid sm:grid-cols-2 gap-10 mb-12">
+        {skillGroups.map((group) => (
+          <motion.div
+            key={group.label}
+            className="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/40 space-y-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="text-xs font-mono text-zinc-500 uppercase tracking-widest mb-4">
+              {group.label}
+            </p>
+            {group.skills.map((skill) => {
+              const d = delay;
+              delay += 0.06;
+              return <SkillBar key={skill.name} {...skill} delay={d} />;
+            })}
+          </motion.div>
         ))}
       </div>
 
@@ -105,7 +139,7 @@ export function Skills() {
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         <p className="text-xs font-mono text-zinc-500 uppercase tracking-widest mb-4">
-          Tools & Workflow
+          Tools & Platforms
         </p>
         <div className="flex flex-wrap gap-3">
           {tools.map((tool, i) => (

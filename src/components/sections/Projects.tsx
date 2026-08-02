@@ -5,50 +5,50 @@ import { useRef } from "react";
 
 const projects = [
   {
-    title: "E-Commerce Platform",
+    title: "Gridbeyond",
     description:
-      "Full-stack e-commerce with real-time inventory, Stripe payments, and a beautiful storefront built with Next.js and PostgreSQL.",
-    tags: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
-    color: "from-violet-500/20 to-purple-500/5",
-    accent: "violet",
-    size: "large",
-    year: "2024",
-    link: "#",
-    github: "#",
-  },
-  {
-    title: "AI Dashboard",
-    description:
-      "Analytics dashboard with AI-powered insights. Real-time data viz, customizable widgets.",
-    tags: ["React", "D3.js", "OpenAI", "Tailwind"],
-    color: "from-cyan-500/20 to-blue-500/5",
-    accent: "cyan",
-    size: "small",
-    year: "2024",
-    link: "#",
-    github: "#",
-  },
-  {
-    title: "Design System",
-    description:
-      "Component library with 60+ components, dark/light theme, and Storybook docs.",
-    tags: ["React", "Storybook", "Radix UI"],
-    color: "from-pink-500/20 to-rose-500/5",
-    accent: "pink",
-    size: "small",
-    year: "2023",
-    link: "#",
-    github: "#",
-  },
-  {
-    title: "Portfolio V2",
-    description:
-      "Animated portfolio with WebGL hero, custom cursor, Lenis smooth scroll, and Motion animations.",
-    tags: ["Next.js", "Motion", "Lenis", "GSAP"],
-    color: "from-amber-500/20 to-orange-500/5",
-    accent: "amber",
-    size: "large",
+      "AI-powered energy platform bridging Distributed Energy Resources (DERs) and the electricity grid. Complex data visualization with real-time energy trading analytics.",
+    tags: ["React.js", "Redux", "Webpack", "SCSS"],
+    color: "from-emerald-500/20 to-green-500/5",
     year: "2025",
+    size: "large",
+    company: "SETA International",
+    link: "#",
+    github: "#",
+  },
+  {
+    title: "TII Forensic",
+    description:
+      "AI chatbot for forensic investigators to analyze digital evidence. Built with modern React patterns and real-time data querying.",
+    tags: ["Next.js", "Tailwind", "React Query", "React Router"],
+    color: "from-blue-500/20 to-cyan-500/5",
+    year: "2024",
+    size: "small",
+    company: "ACD Tech",
+    link: "#",
+    github: "#",
+  },
+  {
+    title: "ChatX",
+    description:
+      "AI chatbot automation platform for customer care with company-specific knowledge. Launched with 300+ trial users in Vietnam and expanded to Korea.",
+    tags: ["Next.js", "FastAPI", "PostgreSQL", "Redis"],
+    color: "from-violet-500/20 to-purple-500/5",
+    year: "2024",
+    size: "small",
+    company: "ChatX AI Technology",
+    link: "#",
+    github: "#",
+  },
+  {
+    title: "Financial Dashboard",
+    description:
+      "Real-time financial dashboard with live WebSocket price feeds, interactive Chart.js visualizations, and role-based access control with Google OAuth and MetaMask.",
+    tags: ["React", "Chart.js", "WebSocket", "MetaMask"],
+    color: "from-amber-500/20 to-orange-500/5",
+    year: "2023",
+    size: "large",
+    company: "ACD Tech",
     link: "#",
     github: "#",
   },
@@ -108,27 +108,26 @@ function ProjectCard({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Gradient background */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-
-      {/* Spotlight effect */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(circle 200px at ${mouseX.get() * 100 + 50}% ${mouseY.get() * 100 + 50}%, rgba(139,92,246,0.06), transparent)`,
-        }}
+      {/* Gradient bg on hover */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
       />
 
       <div className="relative z-10 p-6 md:p-8">
         {/* Header */}
-        <div className="flex items-start justify-between mb-4">
+        <div className="flex items-start justify-between mb-3">
           <div>
-            <span className="text-xs font-mono text-zinc-500">{project.year}</span>
-            <h3 className="text-xl font-bold text-zinc-100 mt-1 group-hover:text-white transition-colors">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-xs font-mono text-zinc-600">{project.year}</span>
+              <span className="text-[10px] font-mono text-zinc-700 border border-zinc-700 rounded-full px-2 py-0.5">
+                {project.company}
+              </span>
+            </div>
+            <h3 className="text-xl font-bold text-zinc-100 group-hover:text-white transition-colors">
               {project.title}
             </h3>
           </div>
-          <div className="flex gap-2 mt-1">
+          <div className="flex gap-2 mt-1 shrink-0">
             <motion.a
               href={project.github}
               className="w-8 h-8 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-500 hover:text-zinc-200 hover:border-zinc-500 transition-colors"
@@ -154,10 +153,8 @@ function ProjectCard({
           </div>
         </div>
 
-        {/* Description */}
         <p className="text-zinc-400 text-sm leading-relaxed mb-5">{project.description}</p>
 
-        {/* Tags */}
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
             <span
@@ -176,7 +173,6 @@ function ProjectCard({
 export function Projects() {
   return (
     <section id="projects" className="section-padding px-6 md:px-12 max-w-6xl mx-auto">
-      {/* Section label */}
       <motion.p
         className="text-xs font-mono text-violet-400 tracking-widest uppercase mb-4"
         initial={{ opacity: 0, y: 20 }}
@@ -194,7 +190,7 @@ export function Projects() {
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.1 }}
       >
-        Selected <span className="text-gradient">Work</span>
+        Key <span className="text-gradient">Projects</span>
       </motion.h2>
 
       <motion.p
@@ -204,35 +200,14 @@ export function Projects() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        A collection of projects I&apos;ve built — from side projects to client work.
+        Projects I&apos;ve built — from AI-powered energy platforms to real-time financial dashboards.
       </motion.p>
 
-      {/* Bento grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 perspective-1000">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {projects.map((project, i) => (
           <ProjectCard key={project.title} project={project} index={i} />
         ))}
       </div>
-
-      {/* View all */}
-      <motion.div
-        className="text-center mt-10"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.4 }}
-      >
-        <motion.a
-          href="#"
-          className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-violet-400 transition-colors font-mono"
-          whileHover={{ x: 4 }}
-        >
-          View all projects
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </motion.a>
-      </motion.div>
     </section>
   );
 }
