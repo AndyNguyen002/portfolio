@@ -73,10 +73,7 @@ export function Hero() {
           </a>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-zinc-600 text-xs">
-          <span className="font-mono tracking-widest uppercase text-[10px]">Scroll</span>
-          <div className="w-px h-12 bg-gradient-to-b from-zinc-600 to-transparent animate-pulse" />
-        </div>
+       
       </div>
     </section>
   );
