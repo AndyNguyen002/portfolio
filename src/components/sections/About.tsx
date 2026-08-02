@@ -11,7 +11,6 @@ const stats = [
   { value: "3+", label: "Years Experience" },
   { value: "5+", label: "Projects Shipped" },
   { value: "3", label: "Companies" },
-  { value: "300+", label: "Trial Users (ChatX)" },
 ];
 
 const experience = [
@@ -28,7 +27,7 @@ const experience = [
   {
     company: "ACD Tech",
     role: "Frontend Developer",
-    period: "June 2023 – Sept 2025",
+    period: "June 2023 – Sep 2025",
     highlights: [
       "Built real-time financial dashboards with live WebSocket & Chart.js",
       "Implemented Google OAuth and MetaMask authentication",
@@ -40,7 +39,7 @@ const experience = [
     role: "Fullstack Developer (Part-time)",
     period: "June 2024 – Jan 2025",
     highlights: [
-      "Launched AI chatbot platform with 300+ trial users in Vietnam & Korea",
+      "Built AI chatbot platform and expanded product to the Korean market",
       "Built auth, Stripe payments, CI/CD on VPS + Nginx",
       "Refactored 6+ core modules of an open-source AI platform",
     ],
@@ -49,20 +48,24 @@ const experience = [
 
 export function About() {
   return (
-    <section id="about" className="section-padding px-6 md:px-12 max-w-6xl mx-auto">
-      {/* Section label */}
-      <motion.p
-        className="text-xs font-mono text-violet-400 tracking-widest uppercase mb-4"
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        01. About
-      </motion.p>
+    <section
+      id="about"
+      data-snap-section="true"
+    >
+      <div className="w-full max-w-6xl mx-auto px-6 md:px-12">
+        {/* Section label */}
+        <motion.p
+          className="text-xs font-mono text-violet-400 tracking-widest uppercase mb-4"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          01. About
+        </motion.p>
 
-      <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
         {/* Left — bio + stats */}
         <div>
           <motion.h2
@@ -169,23 +172,24 @@ export function About() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               {/* Dot */}
-              <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full border-2 border-zinc-700 bg-zinc-950 group-hover:border-violet-400 transition-colors" />
+              <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full border-2 border-zinc-700 bg-zinc-950 group-hover:border-violet-400 transition-colors" />
 
               <div className="flex flex-wrap items-start justify-between gap-1 mb-1">
-                <h3 className="font-semibold text-zinc-200 text-sm">{exp.company}</h3>
-                <span className="text-xs font-mono text-zinc-600">{exp.period}</span>
+                <h3 className="font-semibold text-zinc-200 text-base">{exp.company}</h3>
+                <span className="text-xs font-mono text-zinc-500">{exp.period}</span>
               </div>
-              <p className="text-xs text-violet-400 font-mono mb-2">{exp.role}</p>
-              <ul className="space-y-1">
+              <p className="text-sm text-violet-400 font-mono mb-2">{exp.role}</p>
+              <ul className="space-y-1.5">
                 {exp.highlights.map((h) => (
-                  <li key={h} className="text-xs text-zinc-500 flex items-start gap-1.5">
-                    <span className="mt-1.5 w-1 h-1 rounded-full bg-zinc-600 shrink-0" />
+                  <li key={h} className="text-sm text-zinc-400 flex items-start gap-2">
+                    <span className="mt-2 w-1 h-1 rounded-full bg-zinc-500 shrink-0" />
                     {h}
                   </li>
                 ))}
               </ul>
             </motion.div>
           ))}
+        </div>
         </div>
       </div>
     </section>

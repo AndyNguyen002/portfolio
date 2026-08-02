@@ -1,49 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "motion/react";
-import { useEffect, useRef, useState } from "react";
-
-const ROLES = [
-  "Fullstack Developer",
-  "Frontend Developer",
-  "React Specialist",
-  "UI Engineer",
-];
-
-function TypewriterText({ words }: { words: string[] }) {
-  const [index, setIndex] = useState(0);
-  const [displayed, setDisplayed] = useState("");
-  const [deleting, setDeleting] = useState(false);
-
-  useEffect(() => {
-    const current = words[index % words.length];
-    let timeout: ReturnType<typeof setTimeout>;
-
-    if (!deleting && displayed.length < current.length) {
-      timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 80);
-    } else if (!deleting && displayed.length === current.length) {
-      timeout = setTimeout(() => setDeleting(true), 2000);
-    } else if (deleting && displayed.length > 0) {
-      timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 40);
-    } else if (deleting && displayed.length === 0) {
-      setDeleting(false);
-      setIndex((i) => (i + 1) % words.length);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [displayed, deleting, index, words]);
-
-  return (
-    <span className="text-gradient">
-      {displayed}
-      <motion.span
-        className="inline-block w-0.5 h-8 md:h-10 bg-violet-400 ml-1 align-middle"
-        animate={{ opacity: [1, 0] }}
-        transition={{ duration: 0.6, repeat: Infinity, repeatType: "reverse" }}
-      />
-    </span>
-  );
-}
+import { useRef } from "react";
 
 /* Floating orb background */
 function FloatingOrbs() {
@@ -96,8 +54,9 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative flex items-center justify-center overflow-hidden"
       id="home"
+      data-snap-section="true"
     >
       <FloatingOrbs />
 
@@ -129,9 +88,7 @@ export function Hero() {
         {/* Name */}
         <motion.h1
           className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4 leading-none"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
+          initial={false}
         >
           Hi, I&apos;m{" "}
           <span className="text-gradient">Ngoc Dung</span>
@@ -140,19 +97,22 @@ export function Hero() {
         {/* Role typewriter */}
         <motion.div
           className="text-2xl md:text-4xl font-semibold mb-6 h-12 md:h-14 flex items-center justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
+          initial={false}
         >
-          <TypewriterText words={ROLES} />
+          <span className="text-gradient">
+            Fullstack Developer
+            <motion.span
+              className="inline-block w-0.5 h-8 md:h-10 bg-violet-400 ml-1 align-middle"
+              animate={{ opacity: [1, 0] }}
+              transition={{ duration: 0.7, repeat: Infinity, repeatType: "reverse" }}
+            />
+          </span>
         </motion.div>
 
         {/* Description */}
         <motion.p
           className="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          initial={false}
         >
           Fullstack Developer with 3+ years of experience in React/TypeScript,
           specializing in real-time systems and complex data visualization —

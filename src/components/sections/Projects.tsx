@@ -24,34 +24,34 @@ const projects = [
     color: "from-blue-500/20 to-cyan-500/5",
     year: "2024",
     size: "small",
-    company: "ACD Tech",
+    company: "SETA International",
     link: "#",
     github: "#",
   },
   {
     title: "ChatX",
     description:
-      "AI chatbot automation platform for customer care with company-specific knowledge. Launched with 300+ trial users in Vietnam and expanded to Korea.",
+      "AI chatbot automation platform for customer care with company-specific knowledge. Full-stack implementation with payments, auth, and deployment pipeline.",
     tags: ["Next.js", "FastAPI", "PostgreSQL", "Redis"],
     color: "from-violet-500/20 to-purple-500/5",
     year: "2024",
     size: "small",
     company: "ChatX AI Technology",
-    link: "#",
+    link: "https://www.chatx.vn/",
     github: "#",
   },
-  {
-    title: "Financial Dashboard",
-    description:
-      "Real-time financial dashboard with live WebSocket price feeds, interactive Chart.js visualizations, and role-based access control with Google OAuth and MetaMask.",
-    tags: ["React", "Chart.js", "WebSocket", "MetaMask"],
-    color: "from-amber-500/20 to-orange-500/5",
-    year: "2023",
-    size: "large",
-    company: "ACD Tech",
-    link: "#",
-    github: "#",
-  },
+  // {
+  //   title: "Financial Dashboard",
+  //   description:
+  //     "Real-time financial dashboard with live WebSocket price feeds, interactive Chart.js visualizations, and role-based access control with Google OAuth and MetaMask.",
+  //   tags: ["React", "Chart.js", "WebSocket", "MetaMask"],
+  //   color: "from-amber-500/20 to-orange-500/5",
+  //   year: "2023",
+  //   size: "large",
+  //   company: "ACD Tech",
+  //   link: "#",
+  //   github: "#",
+  // },
 ];
 
 function ProjectCard({
@@ -118,8 +118,8 @@ function ProjectCard({
         <div className="flex items-start justify-between mb-3">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-xs font-mono text-zinc-600">{project.year}</span>
-              <span className="text-[10px] font-mono text-zinc-700 border border-zinc-700 rounded-full px-2 py-0.5">
+              <span className="text-xs font-mono text-white">{project.year}</span>
+              <span className="text-[10px] font-mono text-white border border-zinc-700 rounded-full px-2 py-0.5">
                 {project.company}
               </span>
             </div>
@@ -127,18 +127,8 @@ function ProjectCard({
               {project.title}
             </h3>
           </div>
-          <div className="flex gap-2 mt-1 shrink-0">
-            <motion.a
-              href={project.github}
-              className="w-8 h-8 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-500 hover:text-zinc-200 hover:border-zinc-500 transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-              </svg>
-            </motion.a>
+          {project.link !== '#' && (
+            <div className="flex gap-2 mt-1 shrink-0">
             <motion.a
               href={project.link}
               className="w-8 h-8 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-500 hover:text-zinc-200 hover:border-zinc-500 transition-colors"
@@ -151,6 +141,7 @@ function ProjectCard({
               </svg>
             </motion.a>
           </div>
+          )}
         </div>
 
         <p className="text-zinc-400 text-sm leading-relaxed mb-5">{project.description}</p>
@@ -172,41 +163,46 @@ function ProjectCard({
 
 export function Projects() {
   return (
-    <section id="projects" className="section-padding px-6 md:px-12 max-w-6xl mx-auto">
-      <motion.p
-        className="text-xs font-mono text-violet-400 tracking-widest uppercase mb-4"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        03. Projects
-      </motion.p>
+    <section
+      id="projects"
+      data-snap-section="true"
+    >
+      <div className="w-full max-w-6xl mx-auto px-6 md:px-12">
+        <motion.p
+          className="text-xs font-mono text-violet-400 tracking-widest uppercase mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          03. Projects
+        </motion.p>
 
-      <motion.h2
-        className="text-4xl md:text-5xl font-bold mb-4"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-      >
-        Key <span className="text-gradient">Projects</span>
-      </motion.h2>
+        <motion.h2
+          className="text-4xl md:text-5xl font-bold mb-4"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          Featured <span className="text-gradient">Projects</span>
+        </motion.h2>
 
-      <motion.p
-        className="text-zinc-400 mb-12 max-w-xl"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        Projects I&apos;ve built — from AI-powered energy platforms to real-time financial dashboards.
-      </motion.p>
+        <motion.p
+          className="text-zinc-400 mb-8 max-w-xl"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          Projects I&apos;ve built — from AI-powered energy platforms to real-time financial dashboards.
+        </motion.p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {projects.map((project, i) => (
-          <ProjectCard key={project.title} project={project} index={i} />
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {projects.map((project, i) => (
+            <ProjectCard key={project.title} project={project} index={i} />
+          ))}
+        </div>
       </div>
     </section>
   );

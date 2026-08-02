@@ -1,161 +1,155 @@
 "use client";
 
 import { motion } from "motion/react";
+import type { IconType } from "react-icons";
+import {
+  SiChartdotjs,
+  SiDocker,
+  SiFastapi,
+  SiGit,
+  SiJavascript,
+  SiMysql,
+  SiNestjs,
+  SiNextdotjs,
+  SiNginx,
+  SiNodedotjs,
+  SiPostgresql,
+  SiPython,
+  SiReact,
+  SiReactquery,
+  SiReactrouter,
+  SiRedis,
+  SiRedux,
+  SiTailwindcss,
+  SiTypescript,
+  SiVercel,
+  SiWebpack,
+} from "react-icons/si";
 
-const skillGroups = [
+interface SkillItem {
+  icon: IconType;
+  name: string;
+  color: string;
+}
+
+interface SkillCategory {
+  label: string;
+  skills: SkillItem[];
+}
+
+const categories: SkillCategory[] = [
   {
     label: "Frontend",
     skills: [
-      { name: "React.js", level: 95 },
-      { name: "Next.js", level: 90 },
-      { name: "TypeScript", level: 88 },
-      { name: "JavaScript", level: 92 },
+      { icon: SiReact, name: "React.js", color: "#61DAFB" },
+      { icon: SiNextdotjs, name: "Next.js", color: "#ffffff" },
+      { icon: SiTypescript, name: "TypeScript", color: "#3178C6" },
+      { icon: SiJavascript, name: "JavaScript", color: "#F7DF1E" },
+      { icon: SiTailwindcss, name: "Tailwind CSS", color: "#06B6D4" },
+      { icon: SiRedux, name: "Redux", color: "#764ABC" },
+      { icon: SiReactrouter, name: "React Router", color: "#CA4245" },
+      { icon: SiReactquery, name: "TanStack Query", color: "#FF4154" },
+      { icon: SiChartdotjs, name: "Chart.js", color: "#FF6384" },
     ],
   },
   {
     label: "Backend",
     skills: [
-      { name: "Python / FastAPI", level: 78 },
-      { name: "Node.js / NestJS", level: 72 },
+      { icon: SiNodedotjs, name: "Node.js", color: "#339933" },
+      { icon: SiNestjs, name: "Nest.js", color: "#E0234E" },
+      { icon: SiPython, name: "Python", color: "#3776AB" },
+      { icon: SiFastapi, name: "FastAPI", color: "#009688" },
     ],
   },
   {
     label: "Database",
     skills: [
-      { name: "PostgreSQL", level: 75 },
-      { name: "MySQL / SQL", level: 72 },
-      { name: "Redis", level: 65 },
+      { icon: SiPostgresql, name: "PostgreSQL", color: "#4169E1" },
+      { icon: SiMysql, name: "MySQL", color: "#4479A1" },
+      { icon: SiRedis, name: "Redis", color: "#DC382D" },
     ],
   },
   {
-    label: "Libraries & State",
+    label: "DevOps & Tools",
     skills: [
-      { name: "Redux", level: 85 },
-      { name: "TanStack Query", level: 80 },
-      { name: "Chart.js", level: 85 },
-      { name: "React Router", level: 88 },
+      { icon: SiGit, name: "Git", color: "#F05032" },
+      { icon: SiDocker, name: "Docker", color: "#2496ED" },
+      { icon: SiNginx, name: "Nginx", color: "#009639" },
+      { icon: SiVercel, name: "Vercel", color: "#ffffff" },
+      { icon: SiWebpack, name: "Webpack", color: "#8DD6F9" },
     ],
   },
 ];
 
-const tools = ["Git", "Docker", "Azure", "VMware", "Nginx", "Webpack", "Vite"];
-
-function SkillBar({
-  name,
-  level,
-  delay,
-}: {
-  name: string;
-  level: number;
-  delay: number;
-}) {
+function SkillBadge({ icon: Icon, name, color }: SkillItem) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay }}
+      className="flex items-center gap-2.5 rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-2.5 hover:border-zinc-600 hover:bg-zinc-800/60 transition-colors"
+      whileHover={{ y: -2 }}
+      transition={{ duration: 0.15 }}
     >
-      <div className="flex justify-between items-center mb-1.5">
-        <span className="text-sm text-zinc-300">{name}</span>
-        <span className="text-xs font-mono text-violet-400">{level}%</span>
-      </div>
-      <div className="h-1 rounded-full bg-zinc-800 overflow-hidden">
-        <motion.div
-          className="h-full rounded-full bg-gradient-to-r from-violet-500 to-cyan-500"
-          initial={{ width: 0 }}
-          whileInView={{ width: `${level}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: delay + 0.15, ease: "easeOut" }}
-        />
-      </div>
+      <Icon style={{ color }} className="h-4 w-4 shrink-0" />
+      <span className="text-sm text-zinc-300 whitespace-nowrap">{name}</span>
     </motion.div>
   );
 }
 
 export function Skills() {
-  let delay = 0;
-
   return (
-    <section id="skills" className="section-padding px-6 md:px-12 max-w-6xl mx-auto">
-      <motion.p
-        className="text-xs font-mono text-violet-400 tracking-widest uppercase mb-4"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        02. Skills
-      </motion.p>
+    <section id="skills" data-snap-section="true">
+      <div className="w-full max-w-6xl mx-auto px-6 md:px-12">
+        <motion.p
+          className="text-xs font-mono text-violet-400 tracking-widest uppercase mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          02. Skills
+        </motion.p>
 
-      <motion.h2
-        className="text-4xl md:text-5xl font-bold mb-4"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-      >
-        My <span className="text-gradient">Tech Stack</span>
-      </motion.h2>
+        <motion.h2
+          className="text-4xl md:text-5xl font-bold mb-4"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          Tech <span className="text-gradient">Stack</span>
+        </motion.h2>
 
-      <motion.p
-        className="text-zinc-400 mb-12 max-w-xl"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        Technologies I use to build real-time systems, data-heavy dashboards, and full-stack products.
-      </motion.p>
+        <motion.p
+          className="text-zinc-400 mb-10 max-w-2xl"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          Core technologies for real-time platforms, dashboard systems, and full-stack product delivery.
+        </motion.p>
 
-      {/* Skill groups */}
-      <div className="grid sm:grid-cols-2 gap-10 mb-12">
-        {skillGroups.map((group) => (
-          <motion.div
-            key={group.label}
-            className="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/40 space-y-4"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <p className="text-xs font-mono text-zinc-500 uppercase tracking-widest mb-4">
-              {group.label}
-            </p>
-            {group.skills.map((skill) => {
-              const d = delay;
-              delay += 0.06;
-              return <SkillBar key={skill.name} {...skill} delay={d} />;
-            })}
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Tools */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <p className="text-xs font-mono text-zinc-500 uppercase tracking-widest mb-4">
-          Tools & Platforms
-        </p>
-        <div className="flex flex-wrap gap-3">
-          {tools.map((tool, i) => (
-            <motion.span
-              key={tool}
-              className="text-sm text-zinc-400 border border-zinc-700 rounded-full px-4 py-1.5 hover:border-violet-500/50 hover:text-violet-400 transition-colors cursor-default"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+        <div className="space-y-6">
+          {categories.map((cat, catIdx) => (
+            <motion.div
+              key={cat.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: i * 0.06 }}
+              transition={{ duration: 0.5, delay: catIdx * 0.08 }}
             >
-              {tool}
-            </motion.span>
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest">{cat.label}</span>
+                <div className="flex-1 h-px bg-zinc-800" />
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {cat.skills.map((skill) => (
+                  <SkillBadge key={skill.name} {...skill} />
+                ))}
+              </div>
+            </motion.div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
