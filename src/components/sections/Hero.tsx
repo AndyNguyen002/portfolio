@@ -52,7 +52,7 @@ export function Hero() {
         <p className="text-2xl md:text-4xl font-semibold mb-6 text-gradient">Fullstack Developer</p>
 
         <p className="text-zinc-400 text-base md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-          Fullstack Developer with 3+ years of experience in React/TypeScript, specializing in
+          Fullstack Developer with 4 years of experience in React/TypeScript, specializing in
           real-time systems and complex data visualization — financial dashboards, energy trading
           platforms.
         </p>
