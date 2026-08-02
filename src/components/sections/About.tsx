@@ -107,8 +107,7 @@ export function About() {
 
           <motion.a
             href="/Nguyen_Ngoc_Dung_CV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            download="Nguyen_Ngoc_Dung_CV.pdf"
             className="inline-flex items-center gap-2 mt-8 text-sm font-mono text-violet-400 border border-violet-500/30 hover:bg-violet-500/10 px-5 py-2.5 rounded-full transition-colors"
             variants={fadeUp}
             initial="hidden"
