@@ -36,7 +36,7 @@ const experience = [
   },
   {
     company: "ChatX AI Technology",
-    role: "Fullstack Developer (Part-time)",
+    role: "Frontend Developer (Part-time)",
     period: "June 2024 – Jan 2025",
     highlights: [
       "Built AI chatbot platform and expanded product to the Korean market",
@@ -90,7 +90,7 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p>
-              I&apos;m <strong className="text-zinc-200">Nguyen Ngoc Dung</strong>, a Fullstack Developer
+              I&apos;m <strong className="text-zinc-200">Nguyen Ngoc Dung</strong>, a Frontend Developer
               based in Tay Ho, Ha Noi. I specialize in React/TypeScript, real-time systems,
               and complex data visualization — from energy trading platforms to AI chatbot products.
             </p>

@@ -181,7 +181,7 @@ export function Contact() {
               />
             </div>
             <h3 className="text-2xl font-bold mb-2">Nguyen Ngoc Dung</h3>
-            <p className="text-sm font-mono text-violet-400 mb-1">Fullstack Developer</p>
+            <p className="text-sm font-mono text-violet-400 mb-1">Frontend Developer</p>
             <p className="text-zinc-500 text-xs mb-8">Tay Ho, Ha Noi · Vietnam</p>
             <motion.a
               href={`mailto:${EMAIL}`}
